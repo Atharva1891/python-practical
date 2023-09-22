@@ -1,0 +1,26 @@
+Question 1
+
+SELECT DISTINCT p.first_name FROM patients as p 
+INNER JOIN admissions as a ON p.patient_id = a.patient_id
+WHERE a.diagnosis = 'pneumonia' AND p.weight > 100;
+
+Question 2
+SELECTa.attending_doctor_id,CONCAT(d.first_name, ' ', d.last_name) as full_name,COUNT(a.patient_id) as number_patients_attended
+FROM admissions a
+JOIN doctors d ON d.doctor_id = a.attending_doctor_id
+GROUP BY a.attending_doctor_id, full_name
+ORDER BY number_patients_attended ASC
+LIMIT 1;
+
+Question 3
+SELECT attending_doctor_id AS doctor_id, d.last_name FROM admissions a
+INNER JOIN doctors d ON a.attending_doctor_id = d.doctor_id
+GROUP BY attending_doctor_id, d.last_name
+ORDER BY COUNT(patient_id) DESC
+LIMIT 1;
+
+Question 4
+SELECT DISTINCT province_id FROM patients 
+WHERE province_id = 'ON'
+AND allergies LIKE '%honey%'
+AND allergies LIKE '%sulfa%';
