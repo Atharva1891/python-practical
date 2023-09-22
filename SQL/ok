@@ -1,5 +1,0 @@
-SELECT DISTINCT province_id
-FROM patients 
-WHERE province_id = 'ON'
-AND allergies LIKE '%honey%'
-AND allergies LIKE '%sulfa%';
